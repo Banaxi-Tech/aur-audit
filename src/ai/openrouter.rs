@@ -54,7 +54,7 @@ pub async fn chat(
     let response = http
         .post(url)
         .bearer_auth(api_key)
-        .header("HTTP-Referer", "https://github.com/local/aur-audit")
+        .header("HTTP-Referer", "https://github.com/Banaxi-Tech/aur-audit")
         .header("X-Title", "aur-audit")
         .json(&request)
         .send()
@@ -99,7 +99,7 @@ pub async fn chat_stream_stdout(
     let mut response = http
         .post(url)
         .bearer_auth(api_key)
-        .header("HTTP-Referer", "https://github.com/local/aur-audit")
+        .header("HTTP-Referer", "https://github.com/Banaxi-Tech/aur-audit")
         .header("X-Title", "aur-audit")
         .json(&request)
         .send()
