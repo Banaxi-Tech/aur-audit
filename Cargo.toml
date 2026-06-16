@@ -1,0 +1,22 @@
+[package]
+name = "aur-audit"
+version = "0.1.0"
+edition = "2021"
+description = "AI-assisted security review for Arch User Repository packages"
+license = "Apache-2.0"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive"] }
+colored = "2.1"
+reqwest = { version = "0.12", features = ["json", "rustls-tls", "stream"], default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+tempfile = "3.14"
+thiserror = "2.0"
+tokio = { version = "1.42", features = ["macros", "rt-multi-thread"] }
+walkdir = "2.5"
+
+[dev-dependencies]
+anyhow = "1.0"
