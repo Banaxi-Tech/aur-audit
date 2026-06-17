@@ -9,6 +9,10 @@ logic easier to notice before you run `makepkg` or install a package.
 
 It does not execute package code.
 
+I made this after the AUR compromise where 1,500+ packages were compromised. I
+tested `aur-audit` against 5 compromised packages from that incident, and it
+detected all 5.
+
 ## Features
 
 - Reviews the full repository inventory, not only `PKGBUILD`.
@@ -320,4 +324,3 @@ Use clean chroots, containers, and manual review for packages that touch install
 hooks, systemd units, cron directories, desktop autostart entries, shell startup
 files, package manager hooks, bundled binaries, obfuscated strings, mutable
 sources, or network-executed commands.
-
