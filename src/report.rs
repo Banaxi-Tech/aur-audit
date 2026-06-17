@@ -263,7 +263,8 @@ Use this exact output order:
 
 Files scanned:
 For each file opened for review, output one line:
-VERDICT | file path | one short evidence-based reason
+Start each line with exactly one of these labels: GOOD, SUSPICIOUS, or UNSAFE.
+Format each line as: label | file path | one short evidence-based reason
 
 Then output a blank line and this full report:
 
@@ -356,7 +357,9 @@ mod tests {
         assert!(!prompt.contains("Consistency rule:"));
         assert!(!prompt.contains("Preliminary per-file AI scan verdicts:"));
         assert!(prompt.contains("Do not use Markdown formatting."));
-        assert!(prompt.contains("VERDICT | file path | one short evidence-based reason"));
+        assert!(prompt.contains(
+            "Start each line with exactly one of these labels: GOOD, SUSPICIOUS, or UNSAFE."
+        ));
         assert!(prompt.contains("Files scanned:"));
         assert!(prompt.contains("Then output a blank line and this full report:"));
     }
