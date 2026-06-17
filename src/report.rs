@@ -254,14 +254,16 @@ Severity calibration:
 - Report concrete evidence from the provided files. Put general caveats in Summary or Skipped, binary, or truncated files, not as medium/high findings.
 
 Write a plain English security report.
+Do not use Markdown formatting.
+Do not use Markdown headings, bullets, numbered lists, bold, italics, inline code
+backticks, fenced code blocks, tables, blockquotes, links, or horizontal rules.
+Use plain text labels and indented plain text lines only.
 
 Use this exact output order:
 
 Files scanned:
 For each file opened for review, output one line:
-- GOOD, SUSPICIOUS, or UNSAFE
-- file path
-- one short evidence-based reason
+VERDICT | file path | one short evidence-based reason
 
 Then output a blank line and this full report:
 
@@ -275,25 +277,25 @@ Summary:
 Explain the overall result in a few sentences.
 
 Files reviewed:
-List the files reviewed and why they mattered.
+List the files reviewed and why they mattered, one plain text line per file.
 
 Findings:
 For each finding, include:
-- severity: LOW, MEDIUM, HIGH, or CRITICAL
-- file path
-- line number if available
-- what is suspicious or safe
-- why it matters
+Severity: LOW, MEDIUM, HIGH, or CRITICAL
+File: file path
+Line: line number if available, otherwise unknown
+What: what is suspicious or safe
+Why it matters: why it matters
 
 Skipped, binary, or truncated files:
 Explain anything that limited the review.
 
 Recommended action:
 Say one of:
-- Safe to build
-- Build only in a clean chroot or container
-- Manual review required
-- Do not install
+Safe to build
+Build only in a clean chroot or container
+Manual review required
+Do not install
 
 Complete repository inventory:
 
@@ -353,6 +355,8 @@ mod tests {
         assert!(prompt.contains("SAFE is acceptable"));
         assert!(!prompt.contains("Consistency rule:"));
         assert!(!prompt.contains("Preliminary per-file AI scan verdicts:"));
+        assert!(prompt.contains("Do not use Markdown formatting."));
+        assert!(prompt.contains("VERDICT | file path | one short evidence-based reason"));
         assert!(prompt.contains("Files scanned:"));
         assert!(prompt.contains("Then output a blank line and this full report:"));
     }
